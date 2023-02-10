@@ -9,6 +9,14 @@ table, th, tr, td {
     align-items: center;
 }
 
+#total-value {
+    font-size: 1.3rem;
+}
+
+#total-value span {
+    font-weight: bold;
+}
+
 table {
     margin-top: 25px;
     font-size: 1.2rem;
