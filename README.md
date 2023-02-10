@@ -1,6 +1,9 @@
 # AutoFlex - projeto React & Typescript 
 Projeto full stack, utilizando React e Typescript no frontend, Java com o framework Spring Boot para construção da API e PostgreSQL para armazenamento dos dados. Alguns frameworks como JPA também foram utilizados. O problema e os requisitos seguidos se encontram a seguir.
 
+# Antes de iniciar a aplicação (backend)
+É necessário criar o banco de dados e configurar as applications properties com as credenciais para o mesmo, após sua criação, para que seja possível fazer a leitura/escrita. Um exemplo está contido na pasta backend/target/classes/com/application.properties
+
 # Descrição do problema:
 
 Uma indústria que produz produtos diversos, necessita controlar o estoque dos insumos (matérias-primas) necessárias para a produção dos itens que fabrica. Para isso será necessário o desenvolvimento de um sistema que permita manter o controle dos produtos e das matérias-primas que são utilizadas para a produção de cada produto.
@@ -49,5 +52,4 @@ Requisitos:
 
 -- RF008 – Desenvolver no front-end uma interface gráfica que possibilite listar quais produtos (e quais quantidades) podem ser produzidos com as matérias-primas disponíveis em estoque.
 
-# Antes de iniciar a aplicação (backend)
-- é necessário criar o banco de dados e configurar as applications properties com as credenciais para o mesmo, após sua criação, para que seja possível fazer a leitura/escrita. Um exemplo está contido na pasta backend/target/classes/com/application.properties
+
