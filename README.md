@@ -48,3 +48,6 @@ Requisitos:
 -- RF007 – Desenvolver no front-end uma interface gráfica que possibilite realizar as operações CRUD para associar matérias-primas aos produtos. Não há a necessidade de ser uma tela separada, podendo ser inserida a interface no cadastro de produtos.
 
 -- RF008 – Desenvolver no front-end uma interface gráfica que possibilite listar quais produtos (e quais quantidades) podem ser produzidos com as matérias-primas disponíveis em estoque.
+
+# Antes de iniciar a aplicação (backend)
+- é necessário configurar as applications properties, arquivo que contém as credenciais para o banco de dados. Um exemplo está contido na pasta backend/target/classes/com/application.properties
