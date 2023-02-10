@@ -14,17 +14,24 @@ interface ProductsAndQuantity {
     quantity: number
 }
 
+interface ProductsAndTotalValue {
+    mappedPossibilities: ProductsAndQuantity[],
+    totalValue: number
+}
+
 export function ProductsPage() {
     const [products, setProducts] = useState<Product[]>([]) 
-    const [productsAndQuantities, setProductsAndQuantities] = useState<ProductsAndQuantity[]>([]) 
+    const [productsAndTotalValue, setProductsAndTotalValue] = useState<ProductsAndTotalValue>({mappedPossibilities: [], totalValue: 0}) 
     const [selectedOption, setSelectedOption] = useState<string>("findAll")
     const [productName, setProductName] = useState<string>("")
     const [productValue, setProductValue] = useState<number>(0);
     const [productID, setProductID] = useState<string>("");
     const [errorID, setErrorID] = useState<boolean>(false)
     const [allFieldsError, setAllFieldsError] = useState<boolean>(false);
-    const [componentToAssociateID, setComponentToAssociateID] = useState<string>("")
-    const [componentQuantity, setComponentQuantity] = useState<number>(0)
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
     const [newProductToEdit, setNewProductToEdit] = useState<Product>({
         id: "",
         name: "",
@@ -64,8 +71,7 @@ export function ProductsPage() {
         if (selectedOption === "order") {
 
             getOrderedProducts().then(response => {
-                console.log(response)
-                setProductsAndQuantities(response)
+                setProductsAndTotalValue(response)
             })
         }
     }, [selectedOption])
@@ -165,7 +171,6 @@ export function ProductsPage() {
                 <option value="delete">Delete product</option>
                 <option value="edit">Edit product</option>
                 <option value="order">Show how many products can be made</option>
-                <option value="associate">Associate a product with a component</option>
             </select>
 
             {
@@ -282,28 +287,36 @@ export function ProductsPage() {
             {
                 selectedOption === "order"
                 &&
-                !!productsAndQuantities
+                !!productsAndTotalValue
                 &&
-                productsAndQuantities.length > 0
+                productsAndTotalValue.mappedPossibilities.length > 0
                 &&
-                <table id="table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Value (USD)</th>
-                        <th>Quantity that can be made</th>
-                    </tr>
-                    {productsAndQuantities.map((product: ProductsAndQuantity) => {
-                        return (
+                <>
+                    <table id="table">
+                        <thead>
                             <tr>
-                                <td>{product.product.id}</td>
-                                <td>{product.product.name}</td>
-                                <td>{product.product.value}</td>
-                                <td>{product.quantity}</td>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Value (USD)</th>
+                                <th>Quantity that can be made</th>
                             </tr>
-                        )
-                    })}
-                </table>
+                        </thead>
+                        <tbody>
+                        {productsAndTotalValue.mappedPossibilities.map((possibility: ProductsAndQuantity) => {
+                            return (
+                                <tr key={possibility.product.id}>
+                                    <td>{possibility.product.id}</td>
+                                    <td>{possibility.product.name}</td>
+                                    <td>{possibility.product.value}</td>
+                                    <td>{possibility.quantity}</td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+
+                    <p id="total-value">Total value: <span>{formatter.format(productsAndTotalValue.totalValue)}</span></p>
+                </>
             }
 
             
