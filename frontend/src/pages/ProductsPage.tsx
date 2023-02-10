@@ -203,7 +203,7 @@ export function ProductsPage() {
                     </div>
                     <div>
                         <label>Product value</label>
-                        <input type="number" value={productValue} step="any" onChange={(event) => setProductValue(parseFloat(event.target.value))}/>
+                        <input type="number" min={0} value={productValue} step="any" onChange={(event) => setProductValue(parseFloat(event.target.value))}/>
                     </div>
                     <button type="submit">Save</button>
                 </form>
@@ -259,7 +259,7 @@ export function ProductsPage() {
 
                         <div className="id-container">
                             <label>Product value</label>
-                            <input type="number" step="any" onChange={(event) => 
+                            <input min={0} type="number" step="any" onChange={(event) => 
                             {
                                 setNewProductToEdit({
                                     id: newProductToEdit.id,

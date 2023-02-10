@@ -168,7 +168,7 @@ export function ComponentsPage() {
                     </div>
                     <div>
                         <label>Component stock quantity</label>
-                        <input min={0} type="number" defaultValue={""} value={componentStockQuantity} step="any" onChange={(event) => setComponentStockQuantity(parseInt(event.target.value))}/>
+                        <input min={0} type="number" value={componentStockQuantity} step="any" onChange={(event) => setComponentStockQuantity(parseInt(event.target.value))}/>
                     </div>
                     <button type="submit">Save</button>
                 </form>

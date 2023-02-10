@@ -332,7 +332,7 @@ export function ComponentsProductsPage() {
 
                         <div className="id-container">
                             <label>Quantity</label>
-                            <input type="number" step="any" onChange={(event) => 
+                            <input min={0} type="number" step="any" onChange={(event) => 
                             {
                                 setComponentQuantity(parseInt(event.target.value))
                             }}/>
