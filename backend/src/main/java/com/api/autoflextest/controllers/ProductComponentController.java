@@ -3,6 +3,7 @@ package com.api.autoflextest.controllers;
 import com.api.autoflextest.dtos.OrderedProductsDTO;
 import com.api.autoflextest.dtos.ProductComponentDTO;
 import com.api.autoflextest.dtos.ProductComponentAssociationDTO;
+import com.api.autoflextest.dtos.ProductsAndTotalValueDTO;
 import com.api.autoflextest.models.Component;
 import com.api.autoflextest.models.Product;
 import com.api.autoflextest.models.ProductComponent;
@@ -13,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -105,6 +103,7 @@ public class ProductComponentController {
         List<OrderedProductsDTO> mappedPossibilities = new ArrayList<>();
         List<Product> productList = productService.getAllProductsOrderedByValue();
         int productQuantity;
+        double totalValue = 0;
 
         for (Product product: productList) {
             List<ProductComponent> productComponentList = productComponentService.getAllProductComponentsByProduct(product);
@@ -131,10 +130,16 @@ public class ProductComponentController {
             if (productQuantity == -1) {
                 productQuantity = 0;
             }
+
+            totalValue += productQuantity * product.getValue();
+
             mappedPossibilities.add(new OrderedProductsDTO(product, productQuantity));
         }
 
 
-        return ResponseEntity.status(HttpStatus.OK).body(mappedPossibilities);
+
+        ProductsAndTotalValueDTO productsAndTotalValueDTO = new ProductsAndTotalValueDTO(mappedPossibilities, totalValue);
+
+        return ResponseEntity.status(HttpStatus.OK).body(productsAndTotalValueDTO);
     }
 }
