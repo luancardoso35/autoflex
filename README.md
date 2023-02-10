@@ -1,5 +1,5 @@
-# AutoFlex - React & Typescript project
-Full stack project, featuring React and Typescript in the frontend, Java with Spring Boot to make the API and PostgreSQL. Used frameworks like JPA. The following requirements were followed: 
+# AutoFlex - projeto React & Typescript 
+Projeto full stack, utilizando React e Typescript no frontend, Java com o framework Spring Boot para construção da API e PostgreSQL para armazenamento dos dados. Alguns frameworks como JPA também foram utilizados. O problema e os requisitos seguidos se encontram a seguir.
 
 # Descrição do problema:
 
