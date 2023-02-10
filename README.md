@@ -50,4 +50,4 @@ Requisitos:
 -- RF008 – Desenvolver no front-end uma interface gráfica que possibilite listar quais produtos (e quais quantidades) podem ser produzidos com as matérias-primas disponíveis em estoque.
 
 # Antes de iniciar a aplicação (backend)
-- é necessário configurar as applications properties, arquivo que contém as credenciais para o banco de dados. Um exemplo está contido na pasta backend/target/classes/com/application.properties
+- é necessário criar o banco de dados e configurar as applications properties com as credenciais para o mesmo, após sua criação, para que seja possível fazer a leitura/escrita. Um exemplo está contido na pasta backend/target/classes/com/application.properties
